@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kerolos Girgis — Electrical Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080a0e;
+    --surface: #0d1117;
+    --surface2: #141b24;
+    --border: #1e2d3d;
+    --accent: #00e5ff;
+    --accent2: #ff6b35;
+    --text: #c9d4df;
+    --text-dim: #5a7080;
+    --text-bright: #eaf2f8;
+    --mono: 'DM Mono', monospace;
+    --sans: 'DM Sans', sans-serif;
+    --display: 'Bebas Neue', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NOISE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  /* GRID LINES */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(rgba(0,229,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0,229,255,0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ========== NAV ========== */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(8,10,14,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    letter-spacing: 3px;
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .nav-links { display: flex; gap: 2.5rem; }
+  .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ========== HERO ========== */
+  #hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 3rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero-bg-text {
+    position: absolute;
+    bottom: -2rem;
+    right: -1rem;
+    font-family: var(--display);
+    font-size: clamp(8rem, 22vw, 22rem);
+    color: rgba(0,229,255,0.03);
+    line-height: 1;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .hero-tag {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.2s ease forwards;
+  }
+
+  h1 {
+    font-family: var(--display);
+    font-size: clamp(4rem, 10vw, 10rem);
+    line-height: 0.92;
+    letter-spacing: 4px;
+    color: var(--text-bright);
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s ease forwards;
+  }
+
+  h1 span { color: var(--accent); }
+
+  .hero-desc {
+    max-width: 560px;
+    font-size: 1.05rem;
+    color: var(--text);
+    line-height: 1.7;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.6s ease forwards;
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.8s ease forwards;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    background: var(--accent);
+    color: var(--bg);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-primary:hover {
+    background: var(--text-bright);
+    transform: translateY(-2px);
+  }
+
+  .btn-outline {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  .hero-stats {
+    display: flex;
+    gap: 3rem;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    opacity: 0;
+    animation: fadeUp 0.7s 1s ease forwards;
+  }
+
+  .stat-num {
+    font-family: var(--display);
+    font-size: 2.8rem;
+    color: var(--accent);
+    letter-spacing: 2px;
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-top: 0.3rem;
+  }
+
+  /* ========== SECTIONS ========== */
+  section {
+    position: relative;
+    z-index: 1;
+    padding: 6rem 3rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  h2 {
+    font-family: var(--display);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 3px;
+    color: var(--text-bright);
+    margin-bottom: 3rem;
+    line-height: 1;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, var(--accent) 0%, transparent 100%);
+    max-width: 1100px;
+    margin: 0 auto;
+    opacity: 0.3;
+  }
+
+  /* ========== SKILLS ========== */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .skill-card {
+    background: var(--surface);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .skill-card:hover { background: var(--surface2); }
+
+  .skill-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .skill-card h3 {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 1rem;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    padding: 0.25rem 0.65rem;
+    border: 1px solid var(--border);
+    color: var(--text-dim);
+    letter-spacing: 1px;
+    transition: all 0.2s;
+  }
+  .skill-card:hover .tag { border-color: rgba(0,229,255,0.3); color: var(--text); }
+
+  /* ========== EXPERIENCE ========== */
+  .exp-list { display: flex; flex-direction: column; gap: 0; }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 180px 1fr;
+    gap: 0 2.5rem;
+    padding: 2.5rem 0;
+    border-bottom: 1px solid var(--border);
+    transition: background 0.2s;
+  }
+  .exp-item:first-child { border-top: 1px solid var(--border); }
+
+  .exp-meta {
+    padding-top: 0.2rem;
+  }
+
+  .exp-date {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .exp-org {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    letter-spacing: 1px;
+  }
+
+  .exp-title {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    letter-spacing: 2px;
+    color: var(--text-bright);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .exp-bullets li {
+    font-size: 0.92rem;
+    color: var(--text);
+    padding-left: 1.2rem;
+    position: relative;
+    line-height: 1.55;
+  }
+  .exp-bullets li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.75rem;
+    top: 0.05rem;
+  }
+
+  /* ========== PROJECTS ========== */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+  }
+
+  .project-card {
+    background: var(--surface);
+    padding: 2.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.2s;
+  }
+  .project-card:hover { background: var(--surface2); }
+  .project-card:hover .project-num { color: rgba(0,229,255,0.15); }
+
+  .project-num {
+    font-family: var(--display);
+    font-size: 5rem;
+    color: rgba(0,229,255,0.05);
+    position: absolute;
+    top: 1rem; right: 1.5rem;
+    letter-spacing: 2px;
+    transition: color 0.3s;
+    line-height: 1;
+    user-select: none;
+  }
+
+  .project-card h3 {
+    font-family: var(--display);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--text-bright);
+    margin-bottom: 0.8rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .project-card p {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ========== ACHIEVEMENTS ========== */
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .achievement-card {
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    background: var(--surface);
+    transition: border-color 0.2s;
+  }
+  .achievement-card:hover { border-color: var(--accent); }
+
+  .achievement-card .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .achievement-card h4 {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .achievement-card p {
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* ========== CONTACT ========== */
+  #contact {
+    text-align: center;
+    padding: 6rem 3rem 8rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  #contact h2 { margin-bottom: 1rem; }
+
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--text-dim);
+    margin-bottom: 3rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 2px;
+    color: var(--text);
+    text-decoration: none;
+    padding: 0.7rem 1.4rem;
+    border: 1px solid var(--border);
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* ========== FOOTER ========== */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.5rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer span {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+  }
+
+  /* ========== ANIMATIONS ========== */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* ========== STATUS BADGE ========== */
+  .status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #00c853;
+    border: 1px solid rgba(0,200,83,0.3);
+    padding: 0.35rem 0.9rem;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: fadeUp 0.6s 0.1s ease forwards;
+  }
+
+  .status-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #00c853;
+    animation: pulse 2s ease infinite;
+  }
+
+  @keyframes pulse {
+    0%,100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ========== RESPONSIVE ========== */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.5rem; }
+    section { padding: 4rem 1.5rem; }
+    #hero { padding: 7rem 1.5rem 3rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .hero-stats { gap: 2rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">KG</a>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div id="hero" style="position:relative;z-index:1;">
+  <div class="status-badge">
+    <span class="status-dot"></span>
+    Open to Opportunities — 2025/2026
+  </div>
+  <div class="hero-tag">Electrical Engineering · McMaster University</div>
+  <h1>KEROLOS<br><span>GIRGIS</span></h1>
+  <p class="hero-desc">
+    EV powertrain systems. PCB design & bring-up. Dynamometer testing. 
+    Electrical engineering student at McMaster with hands-on experience in high-voltage integration, 
+    motor analysis, and automotive R&D — building the future of electric mobility.
+  </p>
+  <div class="hero-cta">
+    <a href="#experience" class="btn-primary">View My Work</a>
+    <a href="mailto:kgirg90069@gmail.com" class="btn-outline">Get In Touch</a>
+  </div>
+  <div class="hero-stats">
+    <div>
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Years EV Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">A+</div>
+      <div class="stat-label">Core Circuits Grade</div>
+    </div>
+    <div>
+      <div class="stat-num">HV</div>
+      <div class="stat-label">Certified Systems Work</div>
+    </div>
+    <div>
+      <div class="stat-num">PCB</div>
+      <div class="stat-label">Design to Bring-Up</div>
+    </div>
+  </div>
+  <div class="hero-bg-text">EV</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// 01 — Technical Arsenal</div>
+  <h2>SKILLS &<br>TOOLING</h2>
+  <div class="skills-grid reveal">
+    <div class="skill-card">
+      <div class="skill-card-icon">⚡</div>
+      <h3>EV & Automotive</h3>
+      <div class="skill-tags">
+        <span class="tag">High-Voltage Integration</span>
+        <span class="tag">Electric Motor Analysis</span>
+        <span class="tag">Dynamometer Testing</span>
+        <span class="tag">Sensor Data Acquisition</span>
+        <span class="tag">EV Safety Protocols</span>
+        <span class="tag">CAN Communications</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🔬</div>
+      <h3>Hardware & PCB</h3>
+      <div class="skill-tags">
+        <span class="tag">Altium Designer</span>
+        <span class="tag">PCB Bring-Up</span>
+        <span class="tag">Oscilloscopes</span>
+        <span class="tag">Soldering</span>
+        <span class="tag">AD3 Waveform Gen</span>
+        <span class="tag">Multimeters</span>
+        <span class="tag">PSpice</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">💻</div>
+      <h3>Programming</h3>
+      <div class="skill-tags">
+        <span class="tag">C / C++</span>
+        <span class="tag">Python</span>
+        <span class="tag">MATLAB</span>
+        <span class="tag">Simulink</span>
+        <span class="tag">Verilog (Quartus)</span>
+        <span class="tag">Ladder Logic / PLC</span>
+      </div>
+    </div>
+    <div class="skill-card">
+      <div class="skill-card-icon">🛠</div>
+      <h3>Leadership & Software</h3>
+      <div class="skill-tags">
+        <span class="tag">Workshop Facilitation</span>
+        <span class="tag">Design Reviews</span>
+        <span class="tag">PUMA Dyno Software</span>
+        <span class="tag">Milestone Planning</span>
+        <span class="tag">Onboarding Systems</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// 02 — Where I've Been</div>
+  <h2>EXPERIENCE</h2>
+  <div class="exp-list">
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">May – Aug 2025</div>
+        <div class="exp-org">McMaster MARC</div>
+      </div>
+      <div>
+        <div class="exp-title">Engineering Assistant</div>
+        <ul class="exp-bullets">
+          <li>Supported electric vehicle and advanced mobility research in a professional automotive R&D environment at the McMaster Automotive Resource Centre.</li>
+          <li>Developed and validated vehicle simulation features using Simulink, resolving integration issues with the AVL chassis dynamometer.</li>
+          <li>Operated PUMA dynamometer software for electric motor and powertrain testing, data capture, and analysis.</li>
+          <li>Designed and tested PCBs for temperature sensor data acquisition used in EV motor analysis.</li>
+          <li>Successfully re-integrated inverter box wiring and supported parts finding and purchase requests.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">Oct 2024 – Present</div>
+        <div class="exp-org">McMaster EcoCar</div>
+      </div>
+      <div>
+        <div class="exp-title">High Voltage Systems<br>Team Member</div>
+        <ul class="exp-bullets">
+          <li>Worked on high-voltage EV systems within a competitive automotive design team, applying EV safety practices and automotive electrical standards.</li>
+          <li>Planned, managed, and delivered a full PCB workshop — owning technical scope, learning objectives, design flow, and execution coordination.</li>
+          <li>Led milestone check-ins and design reviews; tracked action items and ensured team deadlines were met.</li>
+          <li>Built reusable PCB templates, review checklists, and bring-up documentation to improve team onboarding speed and consistency.</li>
+          <li>Converted physical wiring layouts into clean electrical schematics; supported high-voltage routing and termination.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="exp-item reveal">
+      <div class="exp-meta">
+        <div class="exp-date">Sep 2023 – Apr 2028</div>
+        <div class="exp-org">McMaster University</div>
+      </div>
+      <div>
+        <div class="exp-title">B.Eng Electrical<br>Engineering</div>
+        <ul class="exp-bullets">
+          <li>Applied object-oriented programming using C++, Python, and MATLAB across coursework and design projects.</li>
+          <li>Constructed and analyzed electrical circuits through labs and simulation — earned A+ in core circuits coursework.</li>
+          <li>Completed Udemy certification in PLC Programming and Controls Design (Ladder Logic).</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 03 — What I've Built</div>
+  <h2>PROJECTS</h2>
+  <div class="projects-grid reveal">
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <h3>EV MOTOR PCB</h3>
+      <p>Designed and assembled a PCB for temperature sensor data acquisition used in electric motor analysis at MARC. Handled full bring-up, troubleshooting, and validation against real dyno testing workflows.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <h3>SIMULINK VEHICLE SIM</h3>
+      <p>Developed and validated vehicle simulation features in Simulink, resolving integration issues with the AVL chassis dynamometer system and CAN communications setup.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-num">03</div>
+      <h3>PCB WORKSHOP SYSTEM</h3>
+      <p>Owned and delivered an end-to-end PCB training workshop for the EcoCar team — built reusable templates, review checklists, bring-up steps, and ran milestone check-ins for every team member's board.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-num">04</div>
+      <h3>HV WIRING INTEGRATION</h3>
+      <p>Re-integrated inverter box wiring and converted physical wiring layouts into clean electrical schematics. Supported high-voltage routing and termination work on an EV competition vehicle.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-num">05</div>
+      <h3>ARDUINO COUNTER</h3>
+      <p>Built a hardware-based counter system to practice embedded debugging techniques and hardware-software interaction on microcontroller platforms.</p>
+    </div>
+    <div class="project-card">
+      <div class="project-num">06</div>
+      <h3>HOME ELECTRICAL REWORK</h3>
+      <p>Rewired and replaced a home ventilation system using safe low-voltage electrical techniques — hands-on residential electrical troubleshooting and installation.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ACHIEVEMENTS -->
+<section id="achievements">
+  <div class="section-label">// 04 — Highlights</div>
+  <h2>KEY<br>ACHIEVEMENTS</h2>
+  <div class="achievements-grid reveal">
+    <div class="achievement-card">
+      <div class="icon">🏆</div>
+      <h4>A+ Circuits</h4>
+      <p>Achieved top grade in core circuits coursework at McMaster Engineering.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">⚙️</div>
+      <h4>Dyno Expertise</h4>
+      <p>One of the few students operating professional PUMA dynamometer software in real EV motor testing.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">📋</div>
+      <h4>Workshop Ownership</h4>
+      <p>Planned and delivered a complete PCB workshop — scope, design reviews, onboarding docs, and team coordination.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">🔌</div>
+      <h4>HV Integration</h4>
+      <p>Successfully re-integrated inverter box wiring and contributed to high-voltage EV systems on a competition team.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">📜</div>
+      <h4>PLC Certification</h4>
+      <p>Completed PLC Programming & Controls Design (Ladder Logic) certification via Udemy.</p>
+    </div>
+    <div class="achievement-card">
+      <div class="icon">🚗</div>
+      <h4>Industry R&D</h4>
+      <p>Worked in a professional automotive R&D environment at MARC — rare for a 2nd-year engineering student.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">// 05 — Let's Connect</div>
+  <h2>LET'S<br>BUILD</h2>
+  <p class="contact-sub">Open to co-op roles, internships & EV/automotive engineering opportunities</p>
+  <div class="contact-links">
+    <a href="mailto:kgirg90069@gmail.com" class="contact-link">
+      📧 kgirg90069@gmail.com
+    </a>
+    <a href="tel:6477193373" class="contact-link">
+      📞 647-719-3373
+    </a>
+    <a href="https://linkedin.com/in/kerollos-girgis" target="_blank" class="contact-link">
+      🔗 LinkedIn Profile
+    </a>
+  </div>
+  <a href="mailto:kgirg90069@gmail.com" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">
+    Send Me A Message
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>Kerolos Girgis — Electrical Engineer</span>
+  <span>McMaster University · Hamilton, ON · 2026</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Smooth active nav
+  const sections = document.querySelectorAll('section, #hero');
+  const navLinks = document.querySelectorAll('.nav-links a');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 200) current = s.id;
+    });
+    navLinks.forEach(link => {
+      link.style.color = link.getAttribute('href') === '#' + current 
+        ? 'var(--accent)' : '';
+    });
+  });
+</script>
+</body>
+</html>
