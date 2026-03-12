@@ -22,7 +22,6 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
   html { scroll-behavior: smooth; }
 
   body {
@@ -34,7 +33,6 @@
     overflow-x: hidden;
   }
 
-  /* NOISE OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -45,7 +43,6 @@
     opacity: 0.4;
   }
 
-  /* GRID LINES */
   body::after {
     content: '';
     position: fixed;
@@ -58,7 +55,6 @@
     z-index: 0;
   }
 
-  /* ========== NAV ========== */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -92,7 +88,6 @@
   }
   .nav-links a:hover { color: var(--accent); }
 
-  /* ========== HERO ========== */
   #hero {
     position: relative;
     min-height: 100vh;
@@ -101,6 +96,7 @@
     justify-content: center;
     padding: 8rem 3rem 4rem;
     overflow: hidden;
+    z-index: 1;
   }
 
   .hero-bg-text {
@@ -137,11 +133,10 @@
     opacity: 0;
     animation: fadeUp 0.7s 0.4s ease forwards;
   }
-
   h1 span { color: var(--accent); }
 
   .hero-desc {
-    max-width: 560px;
+    max-width: 580px;
     font-size: 1.05rem;
     color: var(--text);
     line-height: 1.7;
@@ -172,10 +167,7 @@
     transition: all 0.2s;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
   }
-  .btn-primary:hover {
-    background: var(--text-bright);
-    transform: translateY(-2px);
-  }
+  .btn-primary:hover { background: var(--text-bright); transform: translateY(-2px); }
 
   .btn-outline {
     display: inline-block;
@@ -219,7 +211,6 @@
     margin-top: 0.3rem;
   }
 
-  /* ========== SECTIONS ========== */
   section {
     position: relative;
     z-index: 1;
@@ -246,7 +237,6 @@
     line-height: 1;
   }
 
-  /* DIVIDER */
   .section-divider {
     width: 100%;
     height: 1px;
@@ -256,7 +246,7 @@
     opacity: 0.3;
   }
 
-  /* ========== SKILLS ========== */
+  /* SKILLS */
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -273,10 +263,7 @@
   }
   .skill-card:hover { background: var(--surface2); }
 
-  .skill-card-icon {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
-  }
+  .skill-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
 
   .skill-card h3 {
     font-family: var(--mono);
@@ -287,11 +274,7 @@
     margin-bottom: 1rem;
   }
 
-  .skill-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-  }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
 
   .tag {
     font-family: var(--mono);
@@ -304,7 +287,7 @@
   }
   .skill-card:hover .tag { border-color: rgba(0,229,255,0.3); color: var(--text); }
 
-  /* ========== EXPERIENCE ========== */
+  /* EXPERIENCE */
   .exp-list { display: flex; flex-direction: column; gap: 0; }
 
   .exp-item {
@@ -317,9 +300,7 @@
   }
   .exp-item:first-child { border-top: 1px solid var(--border); }
 
-  .exp-meta {
-    padding-top: 0.2rem;
-  }
+  .exp-meta { padding-top: 0.2rem; }
 
   .exp-date {
     font-family: var(--mono);
@@ -346,12 +327,7 @@
     line-height: 1.1;
   }
 
-  .exp-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
   .exp-bullets li {
     font-size: 0.92rem;
     color: var(--text);
@@ -368,7 +344,7 @@
     top: 0.05rem;
   }
 
-  /* ========== PROJECTS ========== */
+  /* PROJECTS */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -417,7 +393,7 @@
     z-index: 1;
   }
 
-  /* ========== ACHIEVEMENTS ========== */
+  /* ACHIEVEMENTS */
   .achievements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -433,10 +409,7 @@
   }
   .achievement-card:hover { border-color: var(--accent); }
 
-  .achievement-card .icon {
-    font-size: 1.5rem;
-    margin-bottom: 0.8rem;
-  }
+  .achievement-card .icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
 
   .achievement-card h4 {
     font-family: var(--mono);
@@ -447,24 +420,18 @@
     margin-bottom: 0.5rem;
   }
 
-  .achievement-card p {
-    font-size: 0.88rem;
-    color: var(--text);
-    line-height: 1.5;
-  }
+  .achievement-card p { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
 
-  /* ========== CONTACT ========== */
+  /* CONTACT */
   #contact {
     text-align: center;
     padding: 6rem 3rem 8rem;
     max-width: 700px;
     margin: 0 auto;
   }
-
   #contact h2 { margin-bottom: 1rem; }
 
   .contact-sub {
-    font-size: 1rem;
     color: var(--text-dim);
     margin-bottom: 3rem;
     font-family: var(--mono);
@@ -496,7 +463,6 @@
   }
   .contact-link:hover { border-color: var(--accent); color: var(--accent); }
 
-  /* ========== FOOTER ========== */
   footer {
     border-top: 1px solid var(--border);
     padding: 1.5rem 3rem;
@@ -504,7 +470,6 @@
     justify-content: space-between;
     align-items: center;
   }
-
   footer span {
     font-family: var(--mono);
     font-size: 0.65rem;
@@ -513,7 +478,6 @@
     text-transform: uppercase;
   }
 
-  /* ========== ANIMATIONS ========== */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -524,12 +488,8 @@
     transform: translateY(30px);
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .reveal.visible {
-    opacity: 1;
-    transform: none;
-  }
+  .reveal.visible { opacity: 1; transform: none; }
 
-  /* ========== STATUS BADGE ========== */
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -558,7 +518,6 @@
     50% { opacity: 0.3; }
   }
 
-  /* ========== RESPONSIVE ========== */
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.5rem; }
@@ -572,7 +531,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">KG</a>
   <div class="nav-links">
@@ -583,18 +541,15 @@
   </div>
 </nav>
 
-<!-- HERO -->
 <div id="hero" style="position:relative;z-index:1;">
   <div class="status-badge">
     <span class="status-dot"></span>
-    Open to Opportunities — 2025/2026
+    Open to Co-op &amp; Internships — 2025/2026
   </div>
   <div class="hero-tag">Electrical Engineering · McMaster University</div>
   <h1>KEROLOS<br><span>GIRGIS</span></h1>
   <p class="hero-desc">
-    EV powertrain systems. PCB design & bring-up. Dynamometer testing. 
-    Electrical engineering student at McMaster with hands-on experience in high-voltage integration, 
-    motor analysis, and automotive R&D — building the future of electric mobility.
+    Hardware development, RTL, embedded systems, and test. Electrical Engineering student at McMaster with hands-on experience in PCB design, hardware bring-up, sensor data acquisition, EV system integration, and professional R&D test environments.
   </p>
   <div class="hero-cta">
     <a href="#experience" class="btn-primary">View My Work</a>
@@ -602,23 +557,23 @@
   </div>
   <div class="hero-stats">
     <div>
-      <div class="stat-num">2+</div>
-      <div class="stat-label">Years EV Experience</div>
-    </div>
-    <div>
-      <div class="stat-num">A+</div>
-      <div class="stat-label">Core Circuits Grade</div>
-    </div>
-    <div>
-      <div class="stat-num">HV</div>
-      <div class="stat-label">Certified Systems Work</div>
-    </div>
-    <div>
       <div class="stat-num">PCB</div>
       <div class="stat-label">Design to Bring-Up</div>
     </div>
+    <div>
+      <div class="stat-num">RTL</div>
+      <div class="stat-label">Verilog / Quartus</div>
+    </div>
+    <div>
+      <div class="stat-num">EV</div>
+      <div class="stat-label">HV Systems Work</div>
+    </div>
+    <div>
+      <div class="stat-num">R&D</div>
+      <div class="stat-label">MARC Automotive</div>
+    </div>
   </div>
-  <div class="hero-bg-text">EV</div>
+  <div class="hero-bg-text">HW</div>
 </div>
 
 <div class="section-divider"></div>
@@ -629,28 +584,28 @@
   <h2>SKILLS &<br>TOOLING</h2>
   <div class="skills-grid reveal">
     <div class="skill-card">
-      <div class="skill-card-icon">⚡</div>
-      <h3>EV & Automotive</h3>
+      <div class="skill-card-icon">🔲</div>
+      <h3>Hardware / RTL</h3>
       <div class="skill-tags">
-        <span class="tag">High-Voltage Integration</span>
-        <span class="tag">Electric Motor Analysis</span>
-        <span class="tag">Dynamometer Testing</span>
-        <span class="tag">Sensor Data Acquisition</span>
-        <span class="tag">EV Safety Protocols</span>
-        <span class="tag">CAN Communications</span>
+        <span class="tag">Verilog</span>
+        <span class="tag">Quartus</span>
+        <span class="tag">PCB Design</span>
+        <span class="tag">Schematic Review</span>
+        <span class="tag">Hardware Troubleshooting</span>
+        <span class="tag">Sensor Interfacing</span>
+        <span class="tag">Altium Designer</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-card-icon">🔬</div>
-      <h3>Hardware & PCB</h3>
+      <h3>Test / Lab</h3>
       <div class="skill-tags">
-        <span class="tag">Altium Designer</span>
-        <span class="tag">PCB Bring-Up</span>
         <span class="tag">Oscilloscopes</span>
-        <span class="tag">Soldering</span>
-        <span class="tag">AD3 Waveform Gen</span>
         <span class="tag">Multimeters</span>
-        <span class="tag">PSpice</span>
+        <span class="tag">Waveform Generators</span>
+        <span class="tag">Soldering</span>
+        <span class="tag">PUMA Dynamometer</span>
+        <span class="tag">PCB Bring-Up</span>
       </div>
     </div>
     <div class="skill-card">
@@ -660,20 +615,17 @@
         <span class="tag">C / C++</span>
         <span class="tag">Python</span>
         <span class="tag">MATLAB</span>
-        <span class="tag">Simulink</span>
-        <span class="tag">Verilog (Quartus)</span>
         <span class="tag">Ladder Logic / PLC</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-card-icon">🛠</div>
-      <h3>Leadership & Software</h3>
+      <div class="skill-card-icon">📐</div>
+      <h3>Modeling / Simulation</h3>
       <div class="skill-tags">
-        <span class="tag">Workshop Facilitation</span>
-        <span class="tag">Design Reviews</span>
-        <span class="tag">PUMA Dyno Software</span>
-        <span class="tag">Milestone Planning</span>
-        <span class="tag">Onboarding Systems</span>
+        <span class="tag">Simulink</span>
+        <span class="tag">PSpice</span>
+        <span class="tag">AVL Chassis Dyno</span>
+        <span class="tag">Vehicle Sim</span>
       </div>
     </div>
   </div>
@@ -695,11 +647,10 @@
       <div>
         <div class="exp-title">Engineering Assistant</div>
         <ul class="exp-bullets">
-          <li>Supported electric vehicle and advanced mobility research in a professional automotive R&D environment at the McMaster Automotive Resource Centre.</li>
-          <li>Developed and validated vehicle simulation features using Simulink, resolving integration issues with the AVL chassis dynamometer.</li>
-          <li>Operated PUMA dynamometer software for electric motor and powertrain testing, data capture, and analysis.</li>
-          <li>Designed and tested PCBs for temperature sensor data acquisition used in EV motor analysis.</li>
-          <li>Successfully re-integrated inverter box wiring and supported parts finding and purchase requests.</li>
+          <li>Supported electric vehicle and advanced mobility research in an R&D environment with emphasis on testing, validation, and data analysis.</li>
+          <li>Developed and validated simulation features in Simulink to support vehicle and powertrain behavior studies.</li>
+          <li>Operated PUMA dynamometer software for electric motor and powertrain testing, capturing and interpreting performance data.</li>
+          <li>Designed and tested PCBs for temperature sensor data acquisition and documented hardware issues and results.</li>
         </ul>
       </div>
     </div>
@@ -712,11 +663,10 @@
       <div>
         <div class="exp-title">High Voltage Systems<br>Team Member</div>
         <ul class="exp-bullets">
-          <li>Worked on high-voltage EV systems within a competitive automotive design team, applying EV safety practices and automotive electrical standards.</li>
-          <li>Planned, managed, and delivered a full PCB workshop — owning technical scope, learning objectives, design flow, and execution coordination.</li>
-          <li>Led milestone check-ins and design reviews; tracked action items and ensured team deadlines were met.</li>
-          <li>Built reusable PCB templates, review checklists, and bring-up documentation to improve team onboarding speed and consistency.</li>
-          <li>Converted physical wiring layouts into clean electrical schematics; supported high-voltage routing and termination.</li>
+          <li>Contributed to high-voltage subsystem work through wiring support, schematic cleanup, routing decisions, and PCB-related tasks.</li>
+          <li>Planned and delivered a PCB workshop by defining technical content, design flow, and learning objectives for teammates.</li>
+          <li>Led milestone check-ins and design reviews, tracked action items, and helped keep hardware tasks on schedule.</li>
+          <li>Designed, reviewed, and troubleshot PCBs; built reusable templates, checklists, and bring-up steps to improve design consistency.</li>
         </ul>
       </div>
     </div>
@@ -729,9 +679,9 @@
       <div>
         <div class="exp-title">B.Eng Electrical<br>Engineering</div>
         <ul class="exp-bullets">
-          <li>Applied object-oriented programming using C++, Python, and MATLAB across coursework and design projects.</li>
-          <li>Constructed and analyzed electrical circuits through labs and simulation — earned A+ in core circuits coursework.</li>
-          <li>Completed Udemy certification in PLC Programming and Controls Design (Ladder Logic).</li>
+          <li>Relevant foundation in circuit analysis, object-oriented programming, embedded problem solving, and digital hardware concepts.</li>
+          <li>Applied C++, Python, and MATLAB across coursework and design projects.</li>
+          <li>Completed PLC Programming and Controls Design certification (Udemy — Ladder Logic).</li>
         </ul>
       </div>
     </div>
@@ -749,32 +699,32 @@
     <div class="project-card">
       <div class="project-num">01</div>
       <h3>EV MOTOR PCB</h3>
-      <p>Designed and assembled a PCB for temperature sensor data acquisition used in electric motor analysis at MARC. Handled full bring-up, troubleshooting, and validation against real dyno testing workflows.</p>
+      <p>Designed and tested a PCB for temperature sensor data acquisition used in electric motor analysis at MARC. Documented hardware issues, validated results, and integrated with real dyno testing workflows.</p>
     </div>
     <div class="project-card">
       <div class="project-num">02</div>
       <h3>SIMULINK VEHICLE SIM</h3>
-      <p>Developed and validated vehicle simulation features in Simulink, resolving integration issues with the AVL chassis dynamometer system and CAN communications setup.</p>
+      <p>Developed and validated vehicle simulation features in Simulink to support powertrain behavior studies, resolving integration issues with the AVL chassis dynamometer system.</p>
     </div>
     <div class="project-card">
       <div class="project-num">03</div>
       <h3>PCB WORKSHOP SYSTEM</h3>
-      <p>Owned and delivered an end-to-end PCB training workshop for the EcoCar team — built reusable templates, review checklists, bring-up steps, and ran milestone check-ins for every team member's board.</p>
+      <p>Owned and delivered a full PCB training workshop for EcoCar — defined technical content, design flow, learning objectives, reusable templates, checklists, and bring-up documentation.</p>
     </div>
     <div class="project-card">
       <div class="project-num">04</div>
-      <h3>HV WIRING INTEGRATION</h3>
-      <p>Re-integrated inverter box wiring and converted physical wiring layouts into clean electrical schematics. Supported high-voltage routing and termination work on an EV competition vehicle.</p>
+      <h3>HV SCHEMATIC CLEANUP</h3>
+      <p>Converted physical wiring layouts into clean electrical schematics and contributed to high-voltage routing, termination, and wiring support on an EV competition vehicle.</p>
     </div>
     <div class="project-card">
       <div class="project-num">05</div>
       <h3>ARDUINO COUNTER</h3>
-      <p>Built a hardware-based counter system to practice embedded debugging techniques and hardware-software interaction on microcontroller platforms.</p>
+      <p>Built a hardware-based counter to practice embedded debugging, signal tracing, and hardware-software interaction on microcontroller platforms.</p>
     </div>
     <div class="project-card">
       <div class="project-num">06</div>
-      <h3>HOME ELECTRICAL REWORK</h3>
-      <p>Rewired and replaced a home ventilation system using safe low-voltage electrical techniques — hands-on residential electrical troubleshooting and installation.</p>
+      <h3>VENTILATION REWORK</h3>
+      <p>Rewired and replaced a home ventilation system using safe low-voltage electrical techniques — hands-on residential electrical troubleshooting, installation, and functional testing.</p>
     </div>
   </div>
 </section>
@@ -787,6 +737,11 @@
   <h2>KEY<br>ACHIEVEMENTS</h2>
   <div class="achievements-grid reveal">
     <div class="achievement-card">
+      <div class="icon">🔲</div>
+      <h4>Verilog / RTL</h4>
+      <p>Hands-on digital hardware design with Verilog in Quartus — from RTL logic to synthesis and bring-up.</p>
+    </div>
+    <div class="achievement-card">
       <div class="icon">🏆</div>
       <h4>A+ Circuits</h4>
       <p>Achieved top grade in core circuits coursework at McMaster Engineering.</p>
@@ -794,7 +749,7 @@
     <div class="achievement-card">
       <div class="icon">⚙️</div>
       <h4>Dyno Expertise</h4>
-      <p>One of the few students operating professional PUMA dynamometer software in real EV motor testing.</p>
+      <p>Operated professional PUMA dynamometer software in real EV motor testing — rare for an undergrad student.</p>
     </div>
     <div class="achievement-card">
       <div class="icon">📋</div>
@@ -803,8 +758,8 @@
     </div>
     <div class="achievement-card">
       <div class="icon">🔌</div>
-      <h4>HV Integration</h4>
-      <p>Successfully re-integrated inverter box wiring and contributed to high-voltage EV systems on a competition team.</p>
+      <h4>HV Systems</h4>
+      <p>Contributed to high-voltage EV subsystem work including wiring, schematics, routing, and termination on a competition team.</p>
     </div>
     <div class="achievement-card">
       <div class="icon">📜</div>
@@ -825,7 +780,7 @@
 <section id="contact">
   <div class="section-label">// 05 — Let's Connect</div>
   <h2>LET'S<br>BUILD</h2>
-  <p class="contact-sub">Open to co-op roles, internships & EV/automotive engineering opportunities</p>
+  <p class="contact-sub">Open to co-op roles, internships &amp; hardware / EV engineering opportunities</p>
   <div class="contact-links">
     <a href="mailto:kgirg90069@gmail.com" class="contact-link">
       📧 kgirg90069@gmail.com
@@ -833,7 +788,7 @@
     <a href="tel:6477193373" class="contact-link">
       📞 647-719-3373
     </a>
-    <a href="https://linkedin.com/in/kerollos-girgis" target="_blank" class="contact-link">
+    <a href="https://linkedin.com/in/kerolos-girgis-a026a7328/" target="_blank" class="contact-link">
       🔗 LinkedIn Profile
     </a>
   </div>
@@ -842,14 +797,12 @@
   </a>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <span>Kerolos Girgis — Electrical Engineer</span>
   <span>McMaster University · Hamilton, ON · 2026</span>
 </footer>
 
 <script>
-  // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
@@ -860,7 +813,6 @@
   }, { threshold: 0.1 });
   reveals.forEach(el => observer.observe(el));
 
-  // Smooth active nav
   const sections = document.querySelectorAll('section, #hero');
   const navLinks = document.querySelectorAll('.nav-links a');
   window.addEventListener('scroll', () => {
