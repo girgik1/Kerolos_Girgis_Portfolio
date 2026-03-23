@@ -22,6 +22,7 @@
   }
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
   html { scroll-behavior: smooth; }
 
   body {
@@ -33,6 +34,7 @@
     overflow-x: hidden;
   }
 
+  /* NOISE OVERLAY */
   body::before {
     content: '';
     position: fixed;
@@ -43,6 +45,7 @@
     opacity: 0.4;
   }
 
+  /* GRID LINES */
   body::after {
     content: '';
     position: fixed;
@@ -55,6 +58,7 @@
     z-index: 0;
   }
 
+  /* ========== NAV ========== */
   nav {
     position: fixed;
     top: 0; left: 0; right: 0;
@@ -88,6 +92,7 @@
   }
   .nav-links a:hover { color: var(--accent); }
 
+  /* ========== HERO ========== */
   #hero {
     position: relative;
     min-height: 100vh;
@@ -96,7 +101,6 @@
     justify-content: center;
     padding: 8rem 3rem 4rem;
     overflow: hidden;
-    z-index: 1;
   }
 
   .hero-bg-text {
@@ -133,10 +137,11 @@
     opacity: 0;
     animation: fadeUp 0.7s 0.4s ease forwards;
   }
+
   h1 span { color: var(--accent); }
 
   .hero-desc {
-    max-width: 580px;
+    max-width: 560px;
     font-size: 1.05rem;
     color: var(--text);
     line-height: 1.7;
@@ -167,7 +172,10 @@
     transition: all 0.2s;
     clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
   }
-  .btn-primary:hover { background: var(--text-bright); transform: translateY(-2px); }
+  .btn-primary:hover {
+    background: var(--text-bright);
+    transform: translateY(-2px);
+  }
 
   .btn-outline {
     display: inline-block;
@@ -211,6 +219,7 @@
     margin-top: 0.3rem;
   }
 
+  /* ========== SECTIONS ========== */
   section {
     position: relative;
     z-index: 1;
@@ -237,6 +246,7 @@
     line-height: 1;
   }
 
+  /* DIVIDER */
   .section-divider {
     width: 100%;
     height: 1px;
@@ -246,7 +256,7 @@
     opacity: 0.3;
   }
 
-  /* SKILLS */
+  /* ========== SKILLS ========== */
   .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -263,7 +273,10 @@
   }
   .skill-card:hover { background: var(--surface2); }
 
-  .skill-card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .skill-card-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
 
   .skill-card h3 {
     font-family: var(--mono);
@@ -274,7 +287,11 @@
     margin-bottom: 1rem;
   }
 
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
 
   .tag {
     font-family: var(--mono);
@@ -287,7 +304,7 @@
   }
   .skill-card:hover .tag { border-color: rgba(0,229,255,0.3); color: var(--text); }
 
-  /* EXPERIENCE */
+  /* ========== EXPERIENCE ========== */
   .exp-list { display: flex; flex-direction: column; gap: 0; }
 
   .exp-item {
@@ -300,7 +317,9 @@
   }
   .exp-item:first-child { border-top: 1px solid var(--border); }
 
-  .exp-meta { padding-top: 0.2rem; }
+  .exp-meta {
+    padding-top: 0.2rem;
+  }
 
   .exp-date {
     font-family: var(--mono);
@@ -327,7 +346,12 @@
     line-height: 1.1;
   }
 
-  .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
   .exp-bullets li {
     font-size: 0.92rem;
     color: var(--text);
@@ -344,7 +368,7 @@
     top: 0.05rem;
   }
 
-  /* PROJECTS */
+  /* ========== PROJECTS ========== */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -393,7 +417,7 @@
     z-index: 1;
   }
 
-  /* ACHIEVEMENTS */
+  /* ========== ACHIEVEMENTS ========== */
   .achievements-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -409,7 +433,10 @@
   }
   .achievement-card:hover { border-color: var(--accent); }
 
-  .achievement-card .icon { font-size: 1.5rem; margin-bottom: 0.8rem; }
+  .achievement-card .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.8rem;
+  }
 
   .achievement-card h4 {
     font-family: var(--mono);
@@ -420,18 +447,24 @@
     margin-bottom: 0.5rem;
   }
 
-  .achievement-card p { font-size: 0.88rem; color: var(--text); line-height: 1.5; }
+  .achievement-card p {
+    font-size: 0.88rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
 
-  /* CONTACT */
+  /* ========== CONTACT ========== */
   #contact {
     text-align: center;
     padding: 6rem 3rem 8rem;
     max-width: 700px;
     margin: 0 auto;
   }
+
   #contact h2 { margin-bottom: 1rem; }
 
   .contact-sub {
+    font-size: 1rem;
     color: var(--text-dim);
     margin-bottom: 3rem;
     font-family: var(--mono);
@@ -463,6 +496,7 @@
   }
   .contact-link:hover { border-color: var(--accent); color: var(--accent); }
 
+  /* ========== FOOTER ========== */
   footer {
     border-top: 1px solid var(--border);
     padding: 1.5rem 3rem;
@@ -470,6 +504,7 @@
     justify-content: space-between;
     align-items: center;
   }
+
   footer span {
     font-family: var(--mono);
     font-size: 0.65rem;
@@ -478,18 +513,27 @@
     text-transform: uppercase;
   }
 
+  /* ========== ANIMATIONS ========== */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(24px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   .reveal {
-    opacity: 0;
-    transform: translateY(30px);
+    opacity: 1;
+    transform: none;
     transition: opacity 0.6s ease, transform 0.6s ease;
   }
-  .reveal.visible { opacity: 1; transform: none; }
+  .reveal.hidden {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  .reveal.hidden.visible {
+    opacity: 1;
+    transform: none;
+  }
 
+  /* ========== STATUS BADGE ========== */
   .status-badge {
     display: inline-flex;
     align-items: center;
@@ -518,6 +562,221 @@
     50% { opacity: 0.3; }
   }
 
+  /* ========== PROJECT DETAIL (ARDUINO FAN) ========== */
+  .project-detail {
+    border: 1px solid var(--border);
+    background: var(--surface);
+    margin-top: 2rem;
+    overflow: hidden;
+  }
+
+  .project-detail-header {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 2rem;
+    padding: 2.5rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    transition: background 0.2s;
+    user-select: none;
+  }
+  .project-detail-header:hover { background: var(--surface2); }
+
+  .project-detail-num {
+    font-family: var(--display);
+    font-size: 5rem;
+    color: rgba(0,229,255,0.05);
+    line-height: 1;
+    position: absolute;
+    right: 2rem; top: 1rem;
+  }
+
+  .project-detail-title {
+    font-family: var(--display);
+    font-size: 2rem;
+    letter-spacing: 3px;
+    color: var(--text-bright);
+    margin-bottom: 0.5rem;
+  }
+
+  .project-detail-sub {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .project-detail-toggle {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding-top: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  .toggle-arrow {
+    display: inline-block;
+    transition: transform 0.3s ease;
+    font-size: 0.8rem;
+    color: var(--accent);
+  }
+  .project-detail.open .toggle-arrow { transform: rotate(180deg); }
+
+  .project-detail-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4,0,0.2,1);
+  }
+  .project-detail.open .project-detail-body { max-height: 2000px; }
+
+  .project-detail-inner {
+    padding: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2.5rem;
+  }
+
+  @media (max-width: 800px) {
+    .project-detail-inner { grid-template-columns: 1fr; }
+  }
+
+  .project-video-wrap {
+    position: relative;
+    background: #000;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .project-video-wrap video {
+    width: 100%;
+    display: block;
+    max-height: 340px;
+    object-fit: cover;
+  }
+
+  .video-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    padding: 0.6rem 0.8rem;
+    border-top: 1px solid var(--border);
+    background: var(--surface);
+  }
+
+  .project-right { display: flex; flex-direction: column; gap: 1.8rem; }
+
+  .project-desc-block h4 {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8rem;
+  }
+
+  .project-desc-block p {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.65;
+  }
+
+  .project-desc-block ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .project-desc-block ul li {
+    font-size: 0.88rem;
+    color: var(--text);
+    padding-left: 1.2rem;
+    position: relative;
+  }
+  .project-desc-block ul li::before {
+    content: '▹';
+    position: absolute; left: 0;
+    color: var(--accent); font-size: 0.75rem;
+  }
+
+  .project-skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .project-skill-tag {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid rgba(0,229,255,0.3);
+    color: var(--accent);
+    letter-spacing: 1px;
+    background: rgba(0,229,255,0.05);
+  }
+
+  /* CODE BLOCK */
+  .code-block-wrap {
+    grid-column: 1 / -1;
+    border: 1px solid var(--border);
+    overflow: hidden;
+  }
+
+  .code-block-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.7rem 1.2rem;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .code-block-header span {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--accent);
+    text-transform: uppercase;
+  }
+
+  .code-copy-btn {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    background: none;
+    border: 1px solid var(--border);
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .code-copy-btn:hover { border-color: var(--accent); color: var(--accent); }
+
+  pre.arduino-code {
+    background: #060810;
+    padding: 1.5rem;
+    overflow-x: auto;
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    line-height: 1.7;
+    color: #c9d4df;
+    max-height: 380px;
+    overflow-y: auto;
+  }
+
+  /* syntax colours */
+  .kw  { color: #ff6b35; }   /* keywords */
+  .typ { color: #00e5ff; }   /* types */
+  .fn  { color: #7ecfff; }   /* functions */
+  .num { color: #ffd166; }   /* numbers */
+  .cmt { color: #3d5a6e; font-style: italic; } /* comments */
+  .str { color: #a8ff78; }   /* strings */
+
+  /* ========== RESPONSIVE ========== */
   @media (max-width: 700px) {
     nav { padding: 1rem 1.5rem; }
     .nav-links { gap: 1.5rem; }
@@ -531,6 +790,7 @@
 </head>
 <body>
 
+<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#hero">KG</a>
   <div class="nav-links">
@@ -541,39 +801,42 @@
   </div>
 </nav>
 
+<!-- HERO -->
 <div id="hero" style="position:relative;z-index:1;">
   <div class="status-badge">
     <span class="status-dot"></span>
-    Open to Co-op &amp; Internships — 2025/2026
+    Open to Opportunities — 2025/2026
   </div>
   <div class="hero-tag">Electrical Engineering · McMaster University</div>
   <h1>KEROLOS<br><span>GIRGIS</span></h1>
   <p class="hero-desc">
-    Hardware development, RTL, embedded systems, and test. Electrical Engineering student at McMaster with hands-on experience in PCB design, hardware bring-up, sensor data acquisition, EV system integration, and professional R&D test environments.
+    EV powertrain systems. PCB design & bring-up. Dynamometer testing. 
+    Electrical engineering student at McMaster with hands-on experience in high-voltage integration, 
+    motor analysis, and automotive R&D — building the future of electric mobility.
   </p>
   <div class="hero-cta">
     <a href="#experience" class="btn-primary">View My Work</a>
-    <a href="mailto:kgirg90069@gmail.com" class="btn-outline">Get In Touch</a>
+    <a href="/cdn-cgi/l/email-protection#ddb6bab4afbae4ededebe49dbab0bcb4b1f3beb2b0" class="btn-outline">Get In Touch</a>
   </div>
   <div class="hero-stats">
+    <div>
+      <div class="stat-num">2+</div>
+      <div class="stat-label">Years EV Experience</div>
+    </div>
+    <div>
+      <div class="stat-num">A+</div>
+      <div class="stat-label">Core Circuits Grade</div>
+    </div>
+    <div>
+      <div class="stat-num">HV</div>
+      <div class="stat-label">Certified Systems Work</div>
+    </div>
     <div>
       <div class="stat-num">PCB</div>
       <div class="stat-label">Design to Bring-Up</div>
     </div>
-    <div>
-      <div class="stat-num">RTL</div>
-      <div class="stat-label">Verilog / Quartus</div>
-    </div>
-    <div>
-      <div class="stat-num">EV</div>
-      <div class="stat-label">HV Systems Work</div>
-    </div>
-    <div>
-      <div class="stat-num">R&D</div>
-      <div class="stat-label">MARC Automotive</div>
-    </div>
   </div>
-  <div class="hero-bg-text">HW</div>
+  <div class="hero-bg-text">EV</div>
 </div>
 
 <div class="section-divider"></div>
@@ -584,28 +847,30 @@
   <h2>SKILLS &<br>TOOLING</h2>
   <div class="skills-grid reveal">
     <div class="skill-card">
-      <div class="skill-card-icon">🔲</div>
-      <h3>Hardware / RTL</h3>
+      <div class="skill-card-icon">⚡</div>
+      <h3>EV & Automotive</h3>
       <div class="skill-tags">
-        <span class="tag">Verilog</span>
-        <span class="tag">Quartus</span>
-        <span class="tag">PCB Design</span>
-        <span class="tag">Schematic Review</span>
-        <span class="tag">Hardware Troubleshooting</span>
-        <span class="tag">Sensor Interfacing</span>
-        <span class="tag">Altium Designer</span>
+        <span class="tag">High-Voltage Integration</span>
+        <span class="tag">Electric Motor Analysis</span>
+        <span class="tag">Dynamometer Testing</span>
+        <span class="tag">Sensor Data Acquisition</span>
+        <span class="tag">EV Safety Protocols</span>
+        <span class="tag">CAN Communications</span>
       </div>
     </div>
     <div class="skill-card">
       <div class="skill-card-icon">🔬</div>
-      <h3>Test / Lab</h3>
+      <h3>Hardware & PCB</h3>
       <div class="skill-tags">
-        <span class="tag">Oscilloscopes</span>
-        <span class="tag">Multimeters</span>
-        <span class="tag">Waveform Generators</span>
-        <span class="tag">Soldering</span>
-        <span class="tag">PUMA Dynamometer</span>
+        <span class="tag">Altium Designer</span>
         <span class="tag">PCB Bring-Up</span>
+        <span class="tag">Oscilloscopes</span>
+        <span class="tag">Soldering</span>
+        <span class="tag">AD3 Waveform Gen</span>
+        <span class="tag">Multimeters</span>
+        <span class="tag">PSpice</span>
+        <span class="tag">HC-SR04 Ultrasonic</span>
+        <span class="tag">GPIO Control</span>
       </div>
     </div>
     <div class="skill-card">
@@ -615,17 +880,21 @@
         <span class="tag">C / C++</span>
         <span class="tag">Python</span>
         <span class="tag">MATLAB</span>
+        <span class="tag">Simulink</span>
+        <span class="tag">Verilog (Quartus)</span>
         <span class="tag">Ladder Logic / PLC</span>
+        <span class="tag">Arduino / Embedded C</span>
       </div>
     </div>
     <div class="skill-card">
-      <div class="skill-card-icon">📐</div>
-      <h3>Modeling / Simulation</h3>
+      <div class="skill-card-icon">🛠</div>
+      <h3>Leadership & Software</h3>
       <div class="skill-tags">
-        <span class="tag">Simulink</span>
-        <span class="tag">PSpice</span>
-        <span class="tag">AVL Chassis Dyno</span>
-        <span class="tag">Vehicle Sim</span>
+        <span class="tag">Workshop Facilitation</span>
+        <span class="tag">Design Reviews</span>
+        <span class="tag">PUMA Dyno Software</span>
+        <span class="tag">Milestone Planning</span>
+        <span class="tag">Onboarding Systems</span>
       </div>
     </div>
   </div>
@@ -647,10 +916,11 @@
       <div>
         <div class="exp-title">Engineering Assistant</div>
         <ul class="exp-bullets">
-          <li>Supported electric vehicle and advanced mobility research in an R&D environment with emphasis on testing, validation, and data analysis.</li>
-          <li>Developed and validated simulation features in Simulink to support vehicle and powertrain behavior studies.</li>
-          <li>Operated PUMA dynamometer software for electric motor and powertrain testing, capturing and interpreting performance data.</li>
-          <li>Designed and tested PCBs for temperature sensor data acquisition and documented hardware issues and results.</li>
+          <li>Supported electric vehicle and advanced mobility research in a professional automotive R&D environment at the McMaster Automotive Resource Centre.</li>
+          <li>Developed and validated vehicle simulation features using Simulink, resolving integration issues with the AVL chassis dynamometer.</li>
+          <li>Operated PUMA dynamometer software for electric motor and powertrain testing, data capture, and analysis.</li>
+          <li>Designed and tested PCBs for temperature sensor data acquisition used in EV motor analysis.</li>
+          <li>Successfully re-integrated inverter box wiring and supported parts finding and purchase requests.</li>
         </ul>
       </div>
     </div>
@@ -663,10 +933,11 @@
       <div>
         <div class="exp-title">High Voltage Systems<br>Team Member</div>
         <ul class="exp-bullets">
-          <li>Contributed to high-voltage subsystem work through wiring support, schematic cleanup, routing decisions, and PCB-related tasks.</li>
-          <li>Planned and delivered a PCB workshop by defining technical content, design flow, and learning objectives for teammates.</li>
-          <li>Led milestone check-ins and design reviews, tracked action items, and helped keep hardware tasks on schedule.</li>
-          <li>Designed, reviewed, and troubleshot PCBs; built reusable templates, checklists, and bring-up steps to improve design consistency.</li>
+          <li>Worked on high-voltage EV systems within a competitive automotive design team, applying EV safety practices and automotive electrical standards.</li>
+          <li>Planned, managed, and delivered a full PCB workshop — owning technical scope, learning objectives, design flow, and execution coordination.</li>
+          <li>Led milestone check-ins and design reviews; tracked action items and ensured team deadlines were met.</li>
+          <li>Built reusable PCB templates, review checklists, and bring-up documentation to improve team onboarding speed and consistency.</li>
+          <li>Converted physical wiring layouts into clean electrical schematics; supported high-voltage routing and termination.</li>
         </ul>
       </div>
     </div>
@@ -679,9 +950,9 @@
       <div>
         <div class="exp-title">B.Eng Electrical<br>Engineering</div>
         <ul class="exp-bullets">
-          <li>Relevant foundation in circuit analysis, object-oriented programming, embedded problem solving, and digital hardware concepts.</li>
-          <li>Applied C++, Python, and MATLAB across coursework and design projects.</li>
-          <li>Completed PLC Programming and Controls Design certification (Udemy — Ladder Logic).</li>
+          <li>Applied object-oriented programming using C++, Python, and MATLAB across coursework and design projects.</li>
+          <li>Constructed and analyzed electrical circuits through labs and simulation — earned A+ in core circuits coursework.</li>
+          <li>Completed Udemy certification in PLC Programming and Controls Design (Ladder Logic).</li>
         </ul>
       </div>
     </div>
@@ -699,34 +970,153 @@
     <div class="project-card">
       <div class="project-num">01</div>
       <h3>EV MOTOR PCB</h3>
-      <p>Designed and tested a PCB for temperature sensor data acquisition used in electric motor analysis at MARC. Documented hardware issues, validated results, and integrated with real dyno testing workflows.</p>
+      <p>Designed and assembled a PCB for temperature sensor data acquisition used in electric motor analysis at MARC. Handled full bring-up, troubleshooting, and validation against real dyno testing workflows.</p>
     </div>
     <div class="project-card">
       <div class="project-num">02</div>
       <h3>SIMULINK VEHICLE SIM</h3>
-      <p>Developed and validated vehicle simulation features in Simulink to support powertrain behavior studies, resolving integration issues with the AVL chassis dynamometer system.</p>
+      <p>Developed and validated vehicle simulation features in Simulink, resolving integration issues with the AVL chassis dynamometer system and CAN communications setup.</p>
     </div>
     <div class="project-card">
       <div class="project-num">03</div>
       <h3>PCB WORKSHOP SYSTEM</h3>
-      <p>Owned and delivered a full PCB training workshop for EcoCar — defined technical content, design flow, learning objectives, reusable templates, checklists, and bring-up documentation.</p>
+      <p>Owned and delivered an end-to-end PCB training workshop for the EcoCar team — built reusable templates, review checklists, bring-up steps, and ran milestone check-ins for every team member's board.</p>
     </div>
     <div class="project-card">
       <div class="project-num">04</div>
-      <h3>HV SCHEMATIC CLEANUP</h3>
-      <p>Converted physical wiring layouts into clean electrical schematics and contributed to high-voltage routing, termination, and wiring support on an EV competition vehicle.</p>
+      <h3>HV WIRING INTEGRATION</h3>
+      <p>Re-integrated inverter box wiring and converted physical wiring layouts into clean electrical schematics. Supported high-voltage routing and termination work on an EV competition vehicle.</p>
     </div>
-    <div class="project-card">
+    <div class="project-card" style="cursor:pointer;" onclick="document.getElementById('arduino-detail').scrollIntoView({behavior:'smooth'}); setTimeout(()=>openArduino(),400)">
       <div class="project-num">05</div>
-      <h3>ARDUINO COUNTER</h3>
-      <p>Built a hardware-based counter to practice embedded debugging, signal tracing, and hardware-software interaction on microcontroller platforms.</p>
+      <h3>PROXIMITY FAN SYSTEM</h3>
+      <p>Engineered an Arduino-based proximity-activated fan using an HC-SR04 ultrasonic sensor. Fan triggers within 15 cm — full embedded C firmware, GPIO control, serial debugging. <span style="color:var(--accent);font-family:var(--mono);font-size:0.75rem;display:block;margin-top:0.5rem;">↓ VIEW FULL PROJECT</span></p>
     </div>
     <div class="project-card">
       <div class="project-num">06</div>
-      <h3>VENTILATION REWORK</h3>
-      <p>Rewired and replaced a home ventilation system using safe low-voltage electrical techniques — hands-on residential electrical troubleshooting, installation, and functional testing.</p>
+      <h3>HOME ELECTRICAL REWORK</h3>
+      <p>Rewired and replaced a home ventilation system using safe low-voltage electrical techniques — hands-on residential electrical troubleshooting and installation.</p>
     </div>
   </div>
+
+  <!-- ARDUINO FAN DETAIL -->
+  <div class="project-detail reveal" id="arduino-detail">
+    <div class="project-detail-header" onclick="toggleArduino()">
+      <div>
+        <div class="project-detail-sub">// Embedded Systems · Arduino · C</div>
+        <div class="project-detail-title">PROXIMITY-ACTIVATED FAN</div>
+      </div>
+      <div class="project-detail-toggle">
+        Expand Project <span class="toggle-arrow">▼</span>
+      </div>
+    </div>
+    <div class="project-detail-body">
+      <div class="project-detail-inner">
+
+        <!-- VIDEO -->
+        <div>
+          <div class="project-video-wrap">
+            <video controls preload="metadata">
+              <source src="MicrosoftTeams-video.mp4" type="video/mp4">
+              Your browser does not support video.
+            </video>
+            <div class="video-label">▶ Live Demo — Proximity Fan Activation</div>
+          </div>
+        </div>
+
+        <!-- RIGHT SIDE -->
+        <div class="project-right">
+          <div class="project-desc-block">
+            <h4>Overview</h4>
+            <p>Designed and programmed a proximity-activated cooling fan using an Arduino microcontroller and HC-SR04 ultrasonic distance sensor. When an object is detected within <strong style="color:var(--accent);">15 cm</strong>, the fan activates automatically via GPIO — demonstrating real-time sensor polling, embedded control logic, and hardware-software integration.</p>
+          </div>
+          <div class="project-desc-block">
+            <h4>How It Works</h4>
+            <ul>
+              <li>Arduino sends a 10 µs trigger pulse on pin 8 to the HC-SR04</li>
+              <li>Echo return time measured via <code style="color:var(--accent);font-family:var(--mono);font-size:0.8rem;">pulseIn()</code> with 30 ms timeout</li>
+              <li>Distance calculated: <code style="color:var(--accent);font-family:var(--mono);font-size:0.8rem;">time × 0.0343 / 2</code> (cm)</li>
+              <li>Fan on pin 10 toggled HIGH/LOW based on distance threshold</li>
+              <li>Serial monitor outputs live distance data at 9600 baud</li>
+              <li>100 ms polling loop for stable, responsive actuation</li>
+            </ul>
+          </div>
+          <div class="project-desc-block">
+            <h4>Skills Used</h4>
+            <div class="project-skill-tags">
+              <span class="project-skill-tag">Arduino</span>
+              <span class="project-skill-tag">Embedded C</span>
+              <span class="project-skill-tag">HC-SR04 Ultrasonic</span>
+              <span class="project-skill-tag">GPIO Control</span>
+              <span class="project-skill-tag">Serial Debugging</span>
+              <span class="project-skill-tag">Sensor Integration</span>
+              <span class="project-skill-tag">Real-Time Control</span>
+              <span class="project-skill-tag">pulseIn()</span>
+              <span class="project-skill-tag">Hardware Bring-Up</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CODE -->
+        <div class="code-block-wrap">
+          <div class="code-block-header">
+            <span>ProximityFan.ino — Full Source</span>
+            <button class="code-copy-btn" onclick="copyCode(event)">Copy Code</button>
+          </div>
+          <pre class="arduino-code" id="arduino-source"><span class="kw">const</span> <span class="typ">int</span> TriggerOutput = <span class="num">8</span>;
+<span class="kw">const</span> <span class="typ">int</span> ScanInput = <span class="num">7</span>;   <span class="cmt">// Echo pin</span>
+<span class="kw">const</span> <span class="typ">int</span> Fan = <span class="num">10</span>;
+
+<span class="typ">unsigned long</span> TimeFromTarget = <span class="num">0</span>;
+<span class="typ">float</span> distance = <span class="num">0.0</span>;
+
+<span class="typ">void</span> <span class="fn">setup</span>() {
+  <span class="fn">pinMode</span>(ScanInput, INPUT);
+  <span class="fn">pinMode</span>(TriggerOutput, OUTPUT);
+  <span class="fn">pinMode</span>(Fan, OUTPUT);
+
+  <span class="fn">digitalWrite</span>(TriggerOutput, LOW);
+  <span class="fn">digitalWrite</span>(Fan, LOW);
+
+  Serial.<span class="fn">begin</span>(<span class="num">9600</span>);
+}
+
+<span class="typ">void</span> <span class="fn">loop</span>() {
+  <span class="cmt">// Make sure trigger starts LOW</span>
+  <span class="fn">digitalWrite</span>(TriggerOutput, LOW);
+  <span class="fn">delayMicroseconds</span>(<span class="num">2</span>);
+
+  <span class="cmt">// Send 10 us trigger pulse</span>
+  <span class="fn">digitalWrite</span>(TriggerOutput, HIGH);
+  <span class="fn">delayMicroseconds</span>(<span class="num">10</span>);
+  <span class="fn">digitalWrite</span>(TriggerOutput, LOW);
+
+  <span class="cmt">// Wait for echo pulse, timeout after 30 ms</span>
+  TimeFromTarget = <span class="fn">pulseIn</span>(ScanInput, HIGH, <span class="num">30000</span>);
+
+  <span class="kw">if</span> (TimeFromTarget == <span class="num">0</span>) {
+    Serial.<span class="fn">println</span>(<span class="str">"No echo received"</span>);
+    distance = <span class="num">0</span>;
+  } <span class="kw">else</span> {
+    distance = TimeFromTarget * <span class="num">0.0343</span> / <span class="num">2.0</span>;
+    Serial.<span class="fn">print</span>(<span class="str">"Distance from target: "</span>);
+    Serial.<span class="fn">println</span>(distance);
+  }
+
+  <span class="kw">if</span> (distance > <span class="num">0</span> && distance <= <span class="num">15</span>) {
+    <span class="fn">digitalWrite</span>(Fan, HIGH);
+  } <span class="kw">else</span> {
+    <span class="fn">digitalWrite</span>(Fan, LOW);
+  }
+
+  <span class="fn">delay</span>(<span class="num">100</span>);
+}</pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 </section>
 
 <div class="section-divider"></div>
@@ -737,11 +1127,6 @@
   <h2>KEY<br>ACHIEVEMENTS</h2>
   <div class="achievements-grid reveal">
     <div class="achievement-card">
-      <div class="icon">🔲</div>
-      <h4>Verilog / RTL</h4>
-      <p>Hands-on digital hardware design with Verilog in Quartus — from RTL logic to synthesis and bring-up.</p>
-    </div>
-    <div class="achievement-card">
       <div class="icon">🏆</div>
       <h4>A+ Circuits</h4>
       <p>Achieved top grade in core circuits coursework at McMaster Engineering.</p>
@@ -749,7 +1134,7 @@
     <div class="achievement-card">
       <div class="icon">⚙️</div>
       <h4>Dyno Expertise</h4>
-      <p>Operated professional PUMA dynamometer software in real EV motor testing — rare for an undergrad student.</p>
+      <p>One of the few students operating professional PUMA dynamometer software in real EV motor testing.</p>
     </div>
     <div class="achievement-card">
       <div class="icon">📋</div>
@@ -758,8 +1143,8 @@
     </div>
     <div class="achievement-card">
       <div class="icon">🔌</div>
-      <h4>HV Systems</h4>
-      <p>Contributed to high-voltage EV subsystem work including wiring, schematics, routing, and termination on a competition team.</p>
+      <h4>HV Integration</h4>
+      <p>Successfully re-integrated inverter box wiring and contributed to high-voltage EV systems on a competition team.</p>
     </div>
     <div class="achievement-card">
       <div class="icon">📜</div>
@@ -780,51 +1165,63 @@
 <section id="contact">
   <div class="section-label">// 05 — Let's Connect</div>
   <h2>LET'S<br>BUILD</h2>
-  <p class="contact-sub">Open to co-op roles, internships &amp; hardware / EV engineering opportunities</p>
+  <p class="contact-sub">Open to co-op roles, internships & EV/automotive engineering opportunities</p>
   <div class="contact-links">
-    <a href="mailto:kgirg90069@gmail.com" class="contact-link">
-      📧 kgirg90069@gmail.com
+    <a href="/cdn-cgi/l/email-protection#2249454b50451b1212141b62454f434b4e0c414d4f" class="contact-link">
+      📧 <span class="__cf_email__" data-cfemail="9cf7fbf5eefba5acacaaa5dcfbf1fdf5f0b2fff3f1">[email&#160;protected]</span>
     </a>
     <a href="tel:6477193373" class="contact-link">
       📞 647-719-3373
     </a>
-    <a href="https://linkedin.com/in/kerolos-girgis-a026a7328/" target="_blank" class="contact-link">
+    <a href="https://linkedin.com/in/kerollos-girgis" target="_blank" class="contact-link">
       🔗 LinkedIn Profile
     </a>
   </div>
-  <a href="mailto:kgirg90069@gmail.com" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">
+  <a href="/cdn-cgi/l/email-protection#49222e203b2e7079797f70092e24282025672a2624" class="btn-primary" style="font-size:0.9rem;padding:1rem 2.5rem;">
     Send Me A Message
   </a>
 </section>
 
+<!-- FOOTER -->
 <footer>
   <span>Kerolos Girgis — Electrical Engineer</span>
   <span>McMaster University · Hamilton, ON · 2026</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  // Arduino project toggle
+  function toggleArduino() {
+    document.getElementById('arduino-detail').classList.toggle('open');
+  }
+  function openArduino() {
+    document.getElementById('arduino-detail').classList.add('open');
+  }
+
+  // Copy code
+  function copyCode(e) {
+    const pre = document.getElementById('arduino-source');
+    navigator.clipboard.writeText(pre.innerText).then(() => {
+      e.target.textContent = 'Copied!';
+      setTimeout(() => e.target.textContent = 'Copy Code', 2000);
+    });
+  }
+
+  // Scroll reveal — add hidden first so JS-disabled users still see content
   const reveals = document.querySelectorAll('.reveal');
+  reveals.forEach(el => el.classList.add('hidden'));
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+          entry.target.classList.remove('hidden');
+        }, i * 80);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.05 });
   reveals.forEach(el => observer.observe(el));
 
+  // Smooth active nav
   const sections = document.querySelectorAll('section, #hero');
   const navLinks = document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll', () => {
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 200) current = s.id;
-    });
-    navLinks.forEach(link => {
-      link.style.color = link.getAttribute('href') === '#' + current 
-        ? 'var(--accent)' : '';
-    });
-  });
-</script>
-</body>
-</html>
+  windo
